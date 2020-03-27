@@ -18,10 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.lou.simhasher.seg.WordsSegment;
 import com.lou.simhasher.util.DicReader;
 
@@ -31,7 +27,6 @@ import com.lou.simhasher.util.DicReader;
  * @author louxuezheng@hotmail.com
  */
 public final class KeywordExtractor {
-	private static final Logger logger = LoggerFactory.getLogger(KeywordExtractor.class);
 	private Map<String, Double> idfMap = new HashMap<String, Double>();
 	private Set<String> stopWords = new HashSet<String>();
 	private double idfAverage;
@@ -92,9 +87,9 @@ public final class KeywordExtractor {
 			}
 		}
 
-		for(String key:wordmap.keySet()){
-			System.out.println(key+" : "+wordmap.get(key));
-		}
+		//for(String key:wordmap.keySet()){
+		//	System.out.println(key+" : "+wordmap.get(key));
+		//}
 		
 		return wordmap;
 	}
@@ -126,9 +121,9 @@ public final class KeywordExtractor {
 				lineno++;
 			}
 		} catch (NumberFormatException e) {
-			logger.error("数据格式错误：" + e.getMessage());
-		} catch (IOException e) {
-			logger.error("IO错误：" + e.getMessage());
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
 		}
 
 //		assert (lineno > 0);
@@ -149,7 +144,7 @@ public final class KeywordExtractor {
 				stopWords.add(line);
 			}
 		} catch (IOException e) {
-			logger.error("IO错误：" + e.getMessage());
+            e.printStackTrace();
 		}
 	}
 
